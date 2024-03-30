@@ -29,7 +29,7 @@ public class loginSection extends JFrame
         setBackground(new java.awt.Color(51, 51, 255));
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("SimSun", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
 

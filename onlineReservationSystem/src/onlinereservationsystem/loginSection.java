@@ -1,5 +1,8 @@
 package onlinereservationsystem;
 
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -9,8 +12,30 @@ public class loginSection extends JFrame
     public loginSection()
     {
         initComponents();
+        Connect();
     }
 
+    Connection connect;
+    PreparedStatement selectSt;
+    String databaseUrl = "jdbc:mysql://localhost/trainreservation";
+    
+    public void Connect()
+    {
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connect = DriverManager.getConnection(databaseUrl, "root", "");
+        }
+        catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(reservationScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(reservationScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -135,24 +160,47 @@ public class loginSection extends JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        String userName = usernameInput.getText();
+        
         char[] passwordChars = passwordInput.getPassword();
         String password = new String(passwordChars);
         
-        if(usernameInput.getText().equals("") && password.equals(""))
+        if(!(userName.equals("") && password.equals("")))
+        {
+            try 
             {
-                JOptionPane.showMessageDialog(this, "Enter Username or password");
-            }
-            else if (usernameInput.getText().equals("Jason") && password.equals("1234"))
-            {
-                reservationScreen main = new reservationScreen();
+                selectSt = connect.prepareStatement("SELECT * FROM logindetails WHERE username = ? AND password = ?");
+
+                selectSt.setString(1, userName);
+                selectSt.setString(2, password);
                 
-                this.hide();
-                main.setVisible(true);
+                ResultSet result_set = selectSt.executeQuery();
+                
+                if (result_set.next())
+                {
+                    JOptionPane.showMessageDialog(this, "Login Successfull!");
+                    
+                    reservationScreen main = new reservationScreen();
+                    
+                    dispose();
+                    
+                    main.setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Login Unsuccessfull! - Invalid username or password");
+                }
+                
             }
-            else
+            catch (SQLException ex)
             {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password!");
+                Logger.getLogger(loginSection.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Enter Username or password");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void passwordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputActionPerformed

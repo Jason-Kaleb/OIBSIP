@@ -1,12 +1,43 @@
 package onlinereservationsystem;
 
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Date;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 public class reservationScreen extends javax.swing.JFrame {
 
-    public reservationScreen() {
+    public reservationScreen()
+    {
         initComponents();
+        Connect();
     }
     
+    Connection connect;
+    PreparedStatement insertSt;
+    String databaseUrl = "jdbc:mysql://localhost/trainreservation";
     
+    public void Connect()
+    {
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connect = DriverManager.getConnection(databaseUrl, "root", "");
+        }
+        catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(reservationScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(reservationScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,6 +72,7 @@ public class reservationScreen extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Train Reservation System");
@@ -100,8 +132,8 @@ public class reservationScreen extends javax.swing.JFrame {
                     .addComponent(trainNumber)
                     .addComponent(from)
                     .addComponent(classType)
-                    .addComponent(startDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE))
-                .addGap(77, 77, 77)
+                    .addComponent(startDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(97, 97, 97)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,14 +160,14 @@ public class reservationScreen extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel3))
                     .addComponent(lName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(trainNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(trainName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10)))
-                .addGap(21, 21, 21)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,6 +208,13 @@ public class reservationScreen extends javax.swing.JFrame {
         jButton4.setText("View Booking");
         jButton4.setFocusable(false);
 
+        jButton5.setText("Check Train Number");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,18 +224,20 @@ public class reservationScreen extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jButton5)
+                .addGap(9, 9, 9)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +251,8 @@ public class reservationScreen extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
 
@@ -218,12 +260,143 @@ public class reservationScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // my functions 
+    
+    private static String formatDate(Date date)
+    {
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        return sdf.format(date);
+    }
+    
+    public static int generatePNR()
+    {
+        Random random = new Random();
+        return random.nextInt((9999 - 1000) + 1) + 1000;
+    }
+    
+    // this function updates the name of the train when the train number is entered
+    
+    public void updateName()
+    {
+        String trainNo = trainNumber.getText().trim();
+        
+        if (trainNo.isEmpty())
+        {
+            System.err.println("Error: Input must be a number.");
+            trainName.setText(""); // Clear train name if invalid input
+            return; // Exit method
+        }
+        
+        int[] trainNumbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        String[] trainNames = {"Shinkansen", "Acela Express", "Eurostar", "Thalys", "Sapsan", "ICE", "Shinkansen Bullet Train", "Haruka", "Sunrise Express"};
+
+        int trainNoConverted = 0;
+        
+        try
+        {
+            trainNoConverted = Integer.valueOf(trainNo);
+        }
+        catch (NumberFormatException e)
+        {
+            System.err.println("Error: Input is not a valid integer.");
+            trainName.setText(""); // Clear train name if invalid input
+            return; // Exit method
+        }
+        
+        for (int i = 0; i < trainNumbers.length; i++)
+        {
+            if (trainNumbers[i] == trainNoConverted)
+            {
+                trainName.setText(trainNames[i]);
+            }  
+        }
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        int pnr = generatePNR();
+        
+        String firstName = fName.getText();
+        String lastName = lName.getText();
+        String trainNo = trainNumber.getText();
+        
+        int trainNoConverted = 0;
+        
+        try
+        {
+            trainNoConverted = Integer.parseInt(trainNo);
+        }
+        catch (NumberFormatException e)
+        {
+            System.err.println("Error: Input is not a valid integer.");
+            JOptionPane.showMessageDialog(this, "Enter a valid integer!");
+        }
+        
+        String train_Name = trainName.getText();
+        String fromLocation = from.getText();
+        String destination = toLocation.getText();
+        String classChoice = classType.getText();
+        Date start_Date = startDate.getDate();
+        String formattedStartDate = formatDate(start_Date);
+        Date end_Date = endDate.getDate();
+        String formattedEndDate = formatDate(end_Date);
+        
+        if (!(firstName.equals("") && lastName.equals("") && trainNo.equals("") && fromLocation.equals("") && destination.equals("") && classChoice.equals("") && formattedStartDate.equals("") && formattedEndDate.equals("")))
+        {
+            try
+            {
+                insertSt = connect.prepareStatement("INSERT into reservationsystem(pnr, first_name, last_name, train_number, train_name, from_location, to_location, class_type, start_date, end_date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                
+                insertSt.setInt(1, pnr);
+                insertSt.setString(2, firstName);
+                insertSt.setString(3, lastName);
+                insertSt.setInt(4, trainNoConverted);
+                insertSt.setString(5, train_Name);
+                insertSt.setString(6, fromLocation);
+                insertSt.setString(7, destination);
+                insertSt.setString(8, classChoice);
+                insertSt.setString(9, formattedStartDate);
+                insertSt.setString(10, formattedEndDate);
+                
+                int returnedCode = insertSt.executeUpdate();
+                
+                if (returnedCode == 1)
+                {
+                    JOptionPane.showMessageDialog(this, "Successfully Booked!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "There was an error booking!");
+                }
+                
+                fName.setText("");
+                lName.setText("");
+                trainNumber.setText("");
+                trainName.setText("");
+                from.setText("");
+                toLocation.setText("");
+                classType.setText("");
+                fName.requestFocus();
+
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(reservationScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        
+        loginSection backToLogin = new loginSection();
+        backToLogin.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void trainNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainNameActionPerformed
@@ -233,6 +406,52 @@ public class reservationScreen extends javax.swing.JFrame {
     private void trainNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_trainNumberActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
+        String trainNo = trainNumber.getText();
+        
+        int trainNoConverted = 0;
+        
+        try
+        {
+            trainNoConverted = Integer.parseInt(trainNo);
+        }
+        catch (NumberFormatException e)
+        {
+            System.err.println("Error: Input is not a valid integer.");
+            JOptionPane.showMessageDialog(this, "Enter a valid integer!");
+        }
+        
+        if (!(trainNoConverted < 0 || trainNoConverted > 10))
+        {
+            // Below is the code for adding name to textfield when train number is entered
+            trainNumber.getDocument().addDocumentListener(new DocumentListener()
+            {
+                @Override
+                public void insertUpdate(DocumentEvent e)
+                {
+                    updateName();
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e)
+                {
+                    updateName();
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) 
+                {
+                    updateName();
+                }
+            });
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Enter valid train number ranging from 1 - 9");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,6 +482,7 @@ public class reservationScreen extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new reservationScreen().setVisible(true);
             }
@@ -278,6 +498,7 @@ public class reservationScreen extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

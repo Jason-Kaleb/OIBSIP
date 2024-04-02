@@ -30,3 +30,4 @@ replay_pid*
 /onlineReservationSystem/test
 /onlineReservationSystem/*.xml
 /onlineReservationSystem/*.mf
+/onlineReservationSystem/*.form

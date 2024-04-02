@@ -32,3 +32,10 @@ replay_pid*
 /onlineReservationSystem/*.mf
 /onlineReservationSystem/*.form
 onlineReservationSystem\src\onlinereservationsystem\*.form
+/taskno-2/guessingGame/nbproject/private/
+/taskno-2/guessingGame/build/
+/taskno-2/guessingGame/nbproject/
+/taskno-2/guessingGame/test
+/taskno-2/guessingGame/*.xml
+/taskno-2/guessingGame/*.mf
+/taskno-2/guessingGame/src/*.form

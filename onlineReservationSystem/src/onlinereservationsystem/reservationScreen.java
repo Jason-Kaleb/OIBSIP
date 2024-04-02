@@ -68,10 +68,10 @@ public class reservationScreen extends javax.swing.JFrame {
         toLocation = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         trainName = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        bookBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
+        checktrainNoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Train Reservation System");
@@ -185,35 +185,35 @@ public class reservationScreen extends javax.swing.JFrame {
                 .addGap(0, 15, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Book");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bookBtn.setText("Book");
+        bookBtn.setFocusable(false);
+        bookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bookBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Logout");
-        jButton2.setFocusable(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        logoutBtn.setText("Logout");
+        logoutBtn.setFocusable(false);
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                logoutBtnActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Cancel Booking");
-        jButton4.setFocusable(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        cancelBtn.setText("Cancel Booking");
+        cancelBtn.setFocusable(false);
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                cancelBtnActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Check Train Number");
-        jButton5.setFocusable(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        checktrainNoBtn.setText("Check Train Number");
+        checktrainNoBtn.setFocusable(false);
+        checktrainNoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                checktrainNoBtnActionPerformed(evt);
             }
         });
 
@@ -230,13 +230,13 @@ public class reservationScreen extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButton5)
+                .addComponent(checktrainNoBtn)
                 .addGap(9, 9, 9)
-                .addComponent(jButton1)
+                .addComponent(bookBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(logoutBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(cancelBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -248,10 +248,10 @@ public class reservationScreen extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(bookBtn)
+                    .addComponent(logoutBtn)
+                    .addComponent(cancelBtn)
+                    .addComponent(checktrainNoBtn))
                 .addContainerGap())
         );
 
@@ -312,7 +312,7 @@ public class reservationScreen extends javax.swing.JFrame {
         }
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookBtnActionPerformed
         
         int pnr = generatePNR();
         
@@ -389,14 +389,14 @@ public class reservationScreen extends javax.swing.JFrame {
             
             
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bookBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         dispose();
         
         loginSection backToLogin = new loginSection();
         backToLogin.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void trainNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainNameActionPerformed
         // TODO add your handling code here:
@@ -406,7 +406,7 @@ public class reservationScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_trainNumberActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void checktrainNoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checktrainNoBtnActionPerformed
         
         String trainNo = trainNumber.getText();
         
@@ -450,15 +450,15 @@ public class reservationScreen extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Enter valid train number ranging from 1 - 9");
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_checktrainNoBtnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
        
         dispose();
         
         showBooking viewBooking = new showBooking();
         viewBooking.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -497,14 +497,13 @@ public class reservationScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookBtn;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JButton checktrainNoBtn;
     private javax.swing.JTextField classType;
     private com.toedter.calendar.JCalendar endDate;
     private javax.swing.JTextField fName;
     private javax.swing.JTextField from;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -517,6 +516,7 @@ public class reservationScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField lName;
+    private javax.swing.JButton logoutBtn;
     private com.toedter.calendar.JCalendar startDate;
     private javax.swing.JTextField toLocation;
     private javax.swing.JTextField trainName;

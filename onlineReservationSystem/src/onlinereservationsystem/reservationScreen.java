@@ -283,7 +283,6 @@ public class reservationScreen extends javax.swing.JFrame {
         if (trainNo.isEmpty())
         {
             System.err.println("Error: Input must be a number.");
-            trainName.setText(""); // Clear train name if invalid input
             return; // Exit method
         }
         
@@ -294,7 +293,7 @@ public class reservationScreen extends javax.swing.JFrame {
         
         try
         {
-            trainNoConverted = Integer.valueOf(trainNo);
+            trainNoConverted = Integer.parseInt(trainNo);
         }
         catch (NumberFormatException e)
         {
@@ -329,7 +328,7 @@ public class reservationScreen extends javax.swing.JFrame {
         catch (NumberFormatException e)
         {
             System.err.println("Error: Input is not a valid integer.");
-            JOptionPane.showMessageDialog(this, "Enter a valid integer!");
+            JOptionPane.showMessageDialog(this, "Enter a valid integer in the Train number textfield!");
         }
         
         String train_Name = trainName.getText();
@@ -341,7 +340,7 @@ public class reservationScreen extends javax.swing.JFrame {
         Date end_Date = endDate.getDate();
         String formattedEndDate = formatDate(end_Date);
         
-        if (!(firstName.equals("") && lastName.equals("") && trainNo.equals("") && fromLocation.equals("") && destination.equals("") && classChoice.equals("") && formattedStartDate.equals("") && formattedEndDate.equals("")))
+        if (!(firstName.equals("") || lastName.equals("") || trainNo.equals("") || fromLocation.equals("") || destination.equals("") || classChoice.equals("") || formattedStartDate.equals("") || formattedEndDate.equals("")))
         {
             try
             {
@@ -362,7 +361,7 @@ public class reservationScreen extends javax.swing.JFrame {
                 
                 if (returnedCode == 1)
                 {
-                    JOptionPane.showMessageDialog(this, "Successfully Booked!");
+                    JOptionPane.showMessageDialog(this, "Successfully Booked! Your PNR: " + pnr);
                 }
                 else
                 {
@@ -386,8 +385,7 @@ public class reservationScreen extends javax.swing.JFrame {
         }
         else
         {
-            
-            
+            JOptionPane.showMessageDialog(this, "Please make sure that all fields are filled in");
         }
     }//GEN-LAST:event_bookBtnActionPerformed
 
@@ -418,7 +416,6 @@ public class reservationScreen extends javax.swing.JFrame {
         }
         catch (NumberFormatException e)
         {
-            System.err.println("Error: Input is not a valid integer.");
             JOptionPane.showMessageDialog(this, "Enter a valid integer!");
         }
         

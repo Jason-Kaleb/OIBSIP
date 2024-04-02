@@ -54,7 +54,7 @@ public class showBooking extends javax.swing.JFrame
             ResultSetMetaData rsd  = result_set.getMetaData();
             int columnCount = rsd.getColumnCount();
             
-            DefaultTableModel dTable = (DefaultTableModel)jTable1.getModel();
+            DefaultTableModel dTable = (DefaultTableModel)bookingInfo.getModel();
             
             dTable.setRowCount(0);
             
@@ -95,7 +95,7 @@ public class showBooking extends javax.swing.JFrame
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        bookingInfo = new javax.swing.JTable();
         backBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
@@ -104,9 +104,9 @@ public class showBooking extends javax.swing.JFrame
         cancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Bookings");
+        setTitle("Cancel Booking");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bookingInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -117,14 +117,14 @@ public class showBooking extends javax.swing.JFrame
                 "PNR", "First Name", "Last Name", "Train Number", "Train Name", "From Location", "Destination", "Class Type", "Start Date", "End Date"
             }
         ));
-        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        bookingInfo.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                jTable1CaretPositionChanged(evt);
+                bookingInfoCaretPositionChanged(evt);
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(bookingInfo);
 
         backBtn.setText("Back To Reservation Page");
         backBtn.setFocusable(false);
@@ -211,9 +211,9 @@ public class showBooking extends javax.swing.JFrame
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
-    private void jTable1CaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1CaretPositionChanged
+    private void bookingInfoCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_bookingInfoCaretPositionChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1CaretPositionChanged
+    }//GEN-LAST:event_bookingInfoCaretPositionChanged
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         dispose();
@@ -267,9 +267,6 @@ public class showBooking extends javax.swing.JFrame
         
     }//GEN-LAST:event_cancelBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -304,11 +301,11 @@ public class showBooking extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JTable bookingInfo;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField pnrPnr;
     private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables

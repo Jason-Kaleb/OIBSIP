@@ -84,6 +84,8 @@ public class gameScreen extends javax.swing.JFrame
             }
         });
 
+        score.setText("100");
+
         jLabel3.setText("Chances:");
 
         chances.setText("5");
@@ -168,18 +170,14 @@ public class gameScreen extends javax.swing.JFrame
     private void userInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userInputActionPerformed
-
+    
+    private Random random = new Random();
+    private int randomNumber = random.nextInt(100) + 1;
+    
     private void guessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessBtnActionPerformed
-
-    }//GEN-LAST:event_guessBtnActionPerformed
-
-    private void guessBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guessBtnMouseClicked
-     
+        
         int rounds = Integer.parseInt(chances.getText());
-
-        Random random = new Random();
-        int randomNumber = random.nextInt(100) + 1;
-        int userScore = 100;
+        int userScore = Integer.parseInt(score.getText());
         String userNumber = userInput.getText();
         int userNumberConverted;
 
@@ -192,22 +190,30 @@ public class gameScreen extends javax.swing.JFrame
                 if (userNumberConverted == randomNumber)
                 {
                     userScore += 900;
+                    
                     guessBtn.setVisible(false);
                     restartBtn.setVisible(true);
+                    
                     updateText.setText("YOU WIN!!!, Correct Number: " + randomNumber);
+                    userInput.setText("");
                 }
                 else if (userNumberConverted < randomNumber)
                 {
-                    updateText.setText("Guess again but Higher, Correct Number: " + randomNumber);
-                    userScore -= 100;
+                    userScore -= 20;
+                    
+                    updateText.setText("Guess again but Higher");
+                    userInput.setText("");
                     rounds--;
                 }
                 else
                 {
-                    updateText.setText("Guess again but Lower, Correct Number: " + randomNumber);
-                    userScore -= 100;
+                    userScore -= 20;
+                    
+                    updateText.setText("Guess again but Lower");
+                    userInput.setText("");
                     rounds--;
                 }
+                
                 score.setText(Integer.toString(userScore));
                 chances.setText(Integer.toString(rounds));
             }
@@ -222,6 +228,12 @@ public class gameScreen extends javax.swing.JFrame
             restartBtn.setVisible(true);
             updateText.setText("Game Over, Correct Number: " + randomNumber);
         }
+    }//GEN-LAST:event_guessBtnActionPerformed
+
+        
+    
+    private void guessBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guessBtnMouseClicked
+     
     }//GEN-LAST:event_guessBtnMouseClicked
 
     private void restartBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartBtnMouseClicked

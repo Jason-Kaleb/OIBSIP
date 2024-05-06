@@ -23,5 +23,5 @@
 * -> To add a bit of challenge, the user has a limited number of attempts (customizable). This keeps the gameplay engaging and encourages strategic guessing. 👾 
 
 # Tech Stack:
-  * Java [<img align="right" alt="Java" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/java/java.png" />]
+  * Java <img alt="Java" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/java/java.png" />
   * Apache Netbeans. 👨‍💻 

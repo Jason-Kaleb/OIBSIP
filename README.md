@@ -11,7 +11,7 @@
 
 # Task number 2: Guessing Game
 
-* ->The game generates a random number between 1 and 100 (configurable). 🔥 
+* ->The game generates a random number between 1 and 100 (configurable).🔥 
 
 * -> Users try to guess the hidden number by entering their input in a designated text field. ⌨️
 

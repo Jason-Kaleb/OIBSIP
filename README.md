@@ -13,11 +13,11 @@
 
 * ->The game generates a random number between 1 and 100 (configurable).🔥 
 
-* -> Users try to guess the hidden number by entering their input in a designated text field. ⌨️
+* -> Users try to guess the hidden number by entering their input in a designated text field.⌨️
 
 * -> After each guess, the game provides feedback:
   -If the guess is correct, the user wins and the hidden number is revealed!
-  -If the guess is too low, the user receives a hint to guess higher😆 .
+  -If the guess is too low, the user receives a hint to guess higher😆.
   -If the guess is too high, the user receives a hint to guess lower.
 
 * -> To add a bit of challenge, the user has a limited number of attempts (customizable). This keeps the gameplay engaging and encourages strategic guessing. 👾 

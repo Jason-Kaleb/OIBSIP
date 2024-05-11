@@ -24,4 +24,4 @@
 
 # Tech Stack:
   * Java
-  * Apache Netbeans. 👨‍💻 
+  * Apache Netbeans👨‍💻 
